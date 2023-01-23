@@ -338,7 +338,6 @@ function refreshChart(passedData) {
 function filteredMonthHandler(selectedMonth){
   monthSelectedByUser = selectedMonth;
   setFilteredMonth(selectedMonth);
-  console.log(selectedMonth);
   if(Object.keys(user).length != 0){
     const filteredData = rawData.filter(items =>
       items.date.getMonth()+1 == selectedMonth && items.date.getFullYear().toString() === filteredYear && items.userName == user.email
@@ -368,19 +367,14 @@ function filteredMonthHandler(selectedMonth){
       filteredData.filter(item => {
         sum += item.amount;
         expenseByCategoryArray[categoryList.indexOf(filteredCategory)] = sum;
-        console.log(sum);
         individualExpensesArray.push(item.amount);
         individualExpensesTitle.push(item.title);
-        console.log(individualExpensesTitle);
-
       });
     refreshPieChartDataFunction(individualExpensesTitle,individualExpensesArray);
-    console.log("Hey You!");
     } 
   }
 
   if(filteredCategory === "All" && selectedMonth){
-    console.log("Hey there ALl");
     const filteredData = rawData.filter(items =>
       items.date.getMonth()+1 == selectedMonth && items.date.getFullYear().toString() === filteredYear   
     );
@@ -408,7 +402,6 @@ function dataForDonutChart(data){
 function filteredCategoryHandler(selectedCategory){
   categorySelectedByUser = selectedCategory;
   setFilteredCategory(selectedCategory);
-  console.log(selectedCategory);
   const filteredData = rawData.filter(items =>
      items.category === selectedCategory && items.date.getMonth()+1 == filteredMonth && items.date.getFullYear().toString() === filteredYear   
   );
@@ -428,16 +421,13 @@ function filteredCategoryHandler(selectedCategory){
       {
         sum += item.amount;
         expenseByCategoryArray[categoryList.indexOf(selectedCategory)] = sum;
-        console.log(sum);
         individualExpensesArray.push(item.amount);
         individualExpensesTitle.push(item.title);
-        console.log(individualExpensesTitle);
       }
     });
     refreshPieChartDataFunction(individualExpensesTitle,individualExpensesArray);
   } 
   if(selectedCategory === "All"){
-    console.log("Hey there ALl");
     const filteredData = rawData.filter(items =>
       items.date.getMonth()+1 == filteredMonth && items.date.getFullYear().toString() === filteredYear   
     );
