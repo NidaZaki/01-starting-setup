@@ -1,0 +1,71 @@
+
+.new-expense__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    justify-content: space-around;
+  }
+  
+  .new-expense__control label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: flex;
+  }
+  
+  .new-expense__control input {
+    display: flex;
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+  }
+
+  .new-expense__control.amount input {
+    text-align: center;
+  }
+  
+  .new-expense__actions {
+    text-align: right;
+  }
+
+  .new-expense__control select {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+  }
+
+  /* .new-expense__control.input-custom-category{
+    flex-grow:2;
+
+  } */
+
+  .option-placeholder{
+    color: grey;
+  }
+
+  .new-expense.x-button {
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    border-radius: 6px;
+    margin-left: 18rem;
+    width: 5px;
+    margin-top: -37px;
+  }
+
+   .new-expense.x-button:hover,
+  .new-expense.x-button:active {
+    background-color: #510674;
+    border-color: #510674;
+  }

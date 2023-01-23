@@ -1,0 +1,73 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400);
+
+.navigation {
+    width: 100%;
+    background-color: black;
+  }
+  
+  img {
+    width: 25px;
+    border-radius: 50px;
+    float: left;
+  }
+  
+  .logout {
+    font-size: .8em;
+    font-family: 'Calibri', sans-serif;
+      position: relative;
+    right: -3px;
+    bottom: -4px;
+    color:black;
+    overflow: hidden;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity .45s;
+    -webkit-transition: opacity .35s;
+    
+  }
+  
+  .button {
+    text-decoration: none;
+    float: right;
+    padding: 12px;
+    margin: 15px;
+    width: 45px;
+    background-color: #a892ee;
+    transition: width .35s;
+    -webkit-transition: width .35s;
+    overflow: hidden
+  }
+  
+  a:hover {
+    width: 100px;
+  }
+  
+  a:hover .logout{
+    opacity: .9;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .hidebutton {
+    font: inherit;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 1px solid #40005d;
+    background-color: #40005d;
+    color: white;
+    border-radius: 12px;
+    margin-left: 42rem;
+    width: 11em;
+  }
+
+  .hidebutton:hover,
+  .hidebutton:active {
+    background-color: #510674;
+    border-color: #510674;
+  }
