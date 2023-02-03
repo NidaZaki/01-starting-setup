@@ -23,20 +23,11 @@ const NewExpense = (props) => {
 
     }
 
-    // function categoryHandler(selectedCategory){
-    //     props.category(selectedCategory);   
-    // }
-
-    // function customCategoryHandler(customCategory){
-    //     // console.log("Custom Component - New Expense - List of All Custom Category", customCategory);
-    //     props.customCategory(customCategory);
-    // }
-
     return (
     <div className="new-expense">
         {!isEditing && <button onClick = {startEditHandler}>Add New Expense</button>}
         {isEditing && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel = {stopEditHandler} 
-        category = {props.category}></ExpenseForm>}
+        category = {props.category} onEmail = {props.onEmail}></ExpenseForm>}
     </div>
     );
 };

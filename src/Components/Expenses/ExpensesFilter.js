@@ -15,6 +15,7 @@ const ExpensesFilter = (props) => {
 
   function dropDownCategoryChangeHandler(event){
     const categoryPicked = event.target.value;
+    console.log(categoryPicked);
     props.onCategorySelected(categoryPicked);
   }
 
@@ -40,6 +41,7 @@ const ExpensesFilter = (props) => {
           <option value = '10'>October</option>
           <option value = '11'>November</option>
           <option value = '12'>December</option>
+          <option value = '13'>All Months</option>
         </select>
         <select value = {props.defaultYearOnDisplay} onChange = {dropDownChangeHandler}>
           <option value='2022'>2022</option>

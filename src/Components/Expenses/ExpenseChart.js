@@ -12,10 +12,6 @@ export const ExpenseChart = (props) => {
         data={props.chartData}
         options={{
           plugins: {
-            title: {
-              display: true,
-              text: "Expenses happened between 2019-2022"
-            },
             legend: {
               display: true
             }

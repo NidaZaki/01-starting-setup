@@ -2,12 +2,13 @@ import {useState} from "react";
 import ExpenseItem from "./ExpenseItem";
 import './ExpenseList.css';
 import React from "react";
+import './Loader.css';
 
 const ExpenseList = (props) => {
 
 
     if(props.items.length === 0){
-        return <h2 className = "expenses-list__fallback"> Found no expenses.</h2>
+        return (<h2 className = "expenses-list__fallback"> Found no expenses.</h2>)             
     }
 
     function deleteExpenseHandler(deleteId){
@@ -16,7 +17,6 @@ const ExpenseList = (props) => {
 
     function editExpenseHandler() {
         props.refresh();
-        console.log("I'm in Expense List");
     }
 
     return <ul className="expenses-list">
@@ -31,6 +31,9 @@ const ExpenseList = (props) => {
             onDelete = {deleteExpenseHandler}
             onRefresh = {editExpenseHandler}
             onCategorySelectedList = {props.onSetCategoryList}
+            onCategory = {props.onCategory}
+            onMonthSelected = {props.onMonthSelected}
+            onEmail = {props.onEmail}
             />
         ))}
     </ul>

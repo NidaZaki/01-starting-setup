@@ -23,23 +23,7 @@ export const ExpensePieChart = (props) => {
                 }
             }
           }}
-        />
-{/* 
-        <div id = "donut-chart">
-        <div className='chart-category-selected'>{props.category}</div>
-        <Doughnut
-          data={props.donutChartData}
-          options={{
-            plugins:{
-                legend:{
-                    display:true,
-                    position:'right'
-                }
-            }
-          }}
-        />
-        </div> */}
-      
+        />      
 
       </div>
     );

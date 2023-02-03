@@ -3,13 +3,15 @@ import ExpensesFilter from "./ExpensesFilter";
 import Card from "../UI/Card";
 import "./Expense.css"
 import ExpenseList from './ExpenseList';
-
+import { expensebe } from '../../environment';
 
 function Expense(props) {
   const [filteredYear, setFilteredYear] = useState(props.year);
   const [filteredMonth, setFilteredMonth] = useState(props.month);
   const [filteredCategory, setFilteredCategory] = useState (props.category);
  // const [category, setCategory] = useState(props.category);
+  // const [newRawData, setNewRawData] = useState([]);
+
 
   function yearPickedHandler(selectedYear){
     setFilteredYear(selectedYear); 
@@ -22,14 +24,12 @@ function Expense(props) {
   }
 
   function deleteHandler(deleteId){
-    fetch('http://localhost:8080/expenses/' + deleteId, {
-            method: 'DELETE',
-        }).then(res => {
-          if (res.status === 200) {
-            props.setRefresh(!props.refresh)
-            props.setRefreshPieChartData(!props.refreshPieChartData)
-          }
-        });
+      fetch(`${expensebe}expenses/` + deleteId, {
+        method: 'DELETE',
+      }).then(res => {
+      if (res.status === 200) {
+          props.setRefresh(!props.refresh);      
+      }}); 
   }
 
   function refreshHandler(){
@@ -41,6 +41,7 @@ function Expense(props) {
     props.onFilteredCategory(selectedCategory);
   }
 
+
   return (
     <div>
     <Card className = "expense">
@@ -48,7 +49,8 @@ function Expense(props) {
     onYearPicked = {yearPickedHandler} onMonthPicked = {monthPickedHandler} defaultMonthOnDisplay = {filteredMonth} onSetCategoryList = {props.categoryList} 
     onCategorySelected = {categoryPickedHandler} defaultCategoryOnDisplay = {filteredCategory}> 
     </ExpensesFilter>
-    <ExpenseList items = {props.items} onDeletingExpense = {deleteHandler} refresh = {refreshHandler} onSetCategoryList = {props.categoryList}> </ExpenseList>
+    <ExpenseList items = {props.items} onDeletingExpense = {deleteHandler} refresh = {refreshHandler} onSetCategoryList = {props.categoryList} 
+    onCategory = {filteredCategory} onMonthSelected = {filteredMonth} onEmail = {props.onEmail}> </ExpenseList>
     </Card>
     </div>
   );

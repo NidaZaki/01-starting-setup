@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import "./ExpenseForm.css";
+import { expensebe } from "../../environment";
 
 const ExpenseForm = (props) => {
 
@@ -11,6 +12,7 @@ const [selectedCategory, setSelectedCategory] = useState('');
 const [customCategory, setCustomCategory] = useState(props.category);
 const [buttonClicked, setButtonClicked] = useState(false);
 const [buttonPresent, setButtonPresent] = useState(false);
+const [customCategoryForUser, setCustomCategoryForUser] = useState(props.category);
 
 function titleChangeHandler(event){
     setEnteredTitle(event.target.value);
@@ -67,21 +69,43 @@ function submitHandler(event){
     setEnteredDate(new Date());
     setSelectedCategory('');
     if(newCategory){
-        customCategory.push(newCategory);
-        const currentCategory = [...customCategory];
-        setCustomCategory(currentCategory);
-        const categoryData = {
-            userName : "Potty",
-            categories : currentCategory
+        if(!props.onEmail){
+            customCategory.push(newCategory);
+            const currentCategory = [...customCategory];
+            setCustomCategory(currentCategory);
+            const categoryData = {
+                userName : "Generic",
+                categories : currentCategory
+            }
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(categoryData)
+              };
+              fetch(`${expensebe}categories`, requestOptions)
+                .then(response => response.json())
+                .then(data => console.log(data));
         }
-        const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(categoryData)
-      };
-      fetch('http://localhost:8080/categories', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data));
+        else{
+
+            customCategoryForUser.push(newCategory);
+            const currentCategoryForUser = [...customCategoryForUser];
+            setCustomCategoryForUser(currentCategoryForUser);
+            const categoryDataForUser = {
+                userName : props.onEmail,
+                categories : currentCategoryForUser
+            }
+            const requestOptions1 = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(categoryDataForUser)
+              };
+              fetch(`${expensebe}categories`, requestOptions1)
+                .then(response => response.json())
+                .then(data => console.log(data));
+        }
+      
+
     } 
 }
 
