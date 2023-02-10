@@ -16,30 +16,14 @@ const [customCategoryForUser, setCustomCategoryForUser] = useState(props.categor
 
 function titleChangeHandler(event){
     setEnteredTitle(event.target.value);
-    // setUserInput({
-    //     ...userInput,
-    //     enteredTitle: event.target.value});
-
-    // setUserInput((prevState) => {
-    //     return {...prevState,
-    //     enteredTitle : event.target.value};
-    // });
 }
 
 function amountChangeHandler(event){
     setEnteredAmount(Number(event.target.value));
-    // setUserInput({
-    //     ...userInput,
-    //     enteredAmount: event.target.value
-    // });
 }
 
 function dateChangeHandler(event){
     setEnteredDate(event.target.value);
-    // setUserInput({
-    //     ...userInput,
-    //     enteredDate: event.target.value
-    // });
 }
 
 function submitHandler(event){
@@ -111,9 +95,6 @@ function submitHandler(event){
 
 function categoryHandler(event){
     setSelectedCategory(event.target.value);
-    // if(event.target.value !== "Custom"){
-    //     props.onSelectCategory(customCategory);
-    // }
     setButtonClicked(false);
     setButtonPresent(false);
     console.log("Custom Category in EF", customCategory);    

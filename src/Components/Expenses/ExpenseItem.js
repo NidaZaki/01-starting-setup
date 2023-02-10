@@ -16,9 +16,6 @@ function ExpenseItem(props) {
   const[filteredCategory, setFilteredCategory] = useState(props.onCategory);
   const [filteredMonth, setFileteredMonth] = useState(props.onMonthSelected);
   let [editedInputForCategory, setEditedInputForCategory] = useState({...props});
-  // const [categoryListForUser, setCategoryListForUser] = useState(props.onCategorySelectedList)
-
-  // const finalCategory = props.onCategory === "All" ? editedInput : editedInputForCategory;
 
   function deleteHandler(event){
     const itemToBeDeleted = props.id;

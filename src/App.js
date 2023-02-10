@@ -14,11 +14,6 @@ import { getExpenses } from "./Components/Expenses/ExpenseService";
 import { expensebe } from "./environment";
 import './Components/Expenses/Loader.css';
 
-// 1. Passing data from App into ExpenseItem
-// 2. Expense Item is doing two things,
-// 2.a. Rendering data from props passed by App
-// 2.b. passing date(one of the props items from App component) into ExpenseDate component and returning it at the same time.
-
 let expenses = [];
 let yearSelectedByUser = '2022';
 let monthSelectedByUser = '11';
@@ -45,7 +40,6 @@ const[loading, setLoading] = useState(false);
 var colors = [];
 let i = 0;
 let email = user.email;
-filteredMonth = filteredMonth < 10 ? "0" + filteredMonth : filteredMonth;
 
 while (colors.length < 100) {     // Color Generating Array
     do {
@@ -68,7 +62,7 @@ useEffect(() => {         // google sign in USE EFFECT
   );
   
   google.accounts.id.prompt();
-}, []);
+}, [refresh]);
 
 useEffect(() => {             // get CATEGORIES LIST (DROPDOWN)
   let url = expensebe + "categories/";
@@ -382,7 +376,6 @@ function Panel({ title, children }) {
 }
 
 return ( 
-    // { loading ? <div id = "loader-icon" className="loader"></div> : }
     <div>
       <div className="nav-bar-ul">     
         <li className="nav-bar-li expense-tracker">Expense Tracker</li>

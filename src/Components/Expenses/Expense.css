@@ -2,7 +2,6 @@
     padding: 1rem;
     background-color: #37474f;
     margin: 2rem auto;
-    /* width: 50rem; */
     max-width: 95%;
   }
 
@@ -24,14 +23,10 @@
   }
 
   .nav-bar-li.expense-tracker{
-    margin-left: 889px;
+    margin-left: 630px;
     font-size: xx-large;
   }
 
   .nav-bar-li.sign-in{
     float: right;
   }
-
-  /* .nav-bar-li.expense-tracker{
-    float: right;
-  } */

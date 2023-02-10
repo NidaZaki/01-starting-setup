@@ -1,7 +1,4 @@
-/* .wrapper{
-    /* height: 475px; */
-    /* width: 820px; */
-  /* } */
+
   .wrapper.pie-chart{
       height: 400px;
       width: 400px;
@@ -11,7 +8,6 @@
   .chart-category-selected{
     display: flex;
     justify-content: space-evenly;
-    /* font-family: Arial, Helvetica, sans-serif; */
     font-weight: bold;
     font-size: 14px;
     color: #666;

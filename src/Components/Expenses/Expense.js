@@ -9,9 +9,6 @@ function Expense(props) {
   const [filteredYear, setFilteredYear] = useState(props.year);
   const [filteredMonth, setFilteredMonth] = useState(props.month);
   const [filteredCategory, setFilteredCategory] = useState (props.category);
- // const [category, setCategory] = useState(props.category);
-  // const [newRawData, setNewRawData] = useState([]);
-
 
   function yearPickedHandler(selectedYear){
     setFilteredYear(selectedYear); 
@@ -40,7 +37,6 @@ function Expense(props) {
     setFilteredCategory(selectedCategory);
     props.onFilteredCategory(selectedCategory);
   }
-
 
   return (
     <div>
