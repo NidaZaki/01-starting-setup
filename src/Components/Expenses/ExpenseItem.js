@@ -157,7 +157,7 @@ function ExpenseItem(props) {
     <li>
       <Card className="expense-item">
         {editMode ? <div className="new-expense__control date-picker-small">
-                    <input type = "date" min = "2019-01-01" max= "2024-12-31" value={props.date.toISOString().split('T')[0]} onChange = {dateChangeHandler}></input>
+                    <input type = "date" min = "2019-01-01" max= "2024-12-31" defaultValue={props.date.toISOString().split('T')[0]} onChange = {dateChangeHandler}></input>
                 </div> : <ExpenseDate date={props.date}></ExpenseDate>}
       <div className="expense-item__description">
          {editMode ? <div className="new-expense__control"> <input type = "text" defaultValue= {props.title} onChange = {titleChangeHandler}></input> </div> : <h2> {props.title} </h2>}
