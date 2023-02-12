@@ -15,8 +15,8 @@ import { expensebe } from "./environment";
 import './Components/Expenses/Loader.css';
 
 let expenses = [];
-let yearSelectedByUser = '2022';
-let monthSelectedByUser = '11';
+let yearSelectedByUser = '2023';
+let monthSelectedByUser = '02';
 let categorySelectedByUser = '';
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
