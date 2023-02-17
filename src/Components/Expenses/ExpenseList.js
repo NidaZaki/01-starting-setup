@@ -31,7 +31,7 @@ const ExpenseList = (props) => {
             onDelete = {deleteExpenseHandler}
             onRefresh = {editExpenseHandler}
             onCategorySelectedList = {props.onSetCategoryList}
-            onCategory = {props.onCategory}
+            onCategorySelected = {props.onCategory}
             onMonthSelected = {props.onMonthSelected}
             onEmail = {props.onEmail}
             />

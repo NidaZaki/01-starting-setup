@@ -1,5 +1,4 @@
 import React,{ startTransition, useState } from 'react';
-
 import "./ExpenseItem.css";
 import Card from "../UI/Card";
 import ExpenseDate from "./ExpenseDate";
@@ -13,8 +12,7 @@ function ExpenseItem(props) {
   const [category, setCategory] = useState('');
   const [buttonClicked, setButtonClicked] = useState(false);
   const [buttonPresent, setButtonPresent] = useState(false);
-  const[filteredCategory, setFilteredCategory] = useState(props.onCategory);
-  const [filteredMonth, setFileteredMonth] = useState(props.onMonthSelected);
+  const [customCategoryForUser, setCustomCategoryForUser] = useState(props.onCategorySelectedList);
   let [editedInputForCategory, setEditedInputForCategory] = useState({...props});
 
   function deleteHandler(event){
@@ -24,18 +22,15 @@ function ExpenseItem(props) {
 
   function editHandler(event){
     setEditMode(!editMode);
-    if(props.onCategory){
-      if(props.category === props.onCategory){
-        setEditedInputForCategory({...props});
-      }
-      else if(props.onCategory === "All" && props.onMonthSelected){
+    if(props.onCategorySelected){
+      if((props.category === props.onCategorySelected) || (props.onCategorySelected === "All" && props.onMonthSelected)){
         setEditedInputForCategory({...props});
       }
     } 
   }
 
   function fetchEditedExpenses(input){
-    const requestOptions = {
+    const requestOptions = {              // POST UPDTAED INPUT
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(input)
@@ -43,48 +38,63 @@ function ExpenseItem(props) {
     fetch(`${expensebe}expenses`, requestOptions)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
-      });
-    setEditMode(!editMode);
-    props.onRefresh();
+        props.onRefresh();          // GET CALL 
+        setEditMode(!editMode);
+      }
+      );  
   }
 
   function saveHandler(event) {
-   if(props.onCategory && props.onCategory != "All"){
+    if((props.onCategorySelected && props.onCategorySelected != "All") || (props.onCategorySelected === "All" && props.onMonthSelected)){
       fetchEditedExpenses(editedInputForCategory);
     }
-    else if(props.onCategory === "All" && props.onMonthSelected){
-      fetchEditedExpenses(editedInputForCategory);
+    else{
+      fetchEditedExpenses(editedInput);
     }
-   else{
-    fetchEditedExpenses(editedInput);
-   }
 
     if(category){
-      categoryList.push(category);
-      const currentCategory = [...categoryList];
-      setCategoryList(currentCategory);
+      if(!props.onEmail){       // if new custom category added, and user not logged in
+        categoryList.push(category);
+        const currentCategory = [...categoryList];
+        setCategoryList(currentCategory);
+     
+      const categoryData = {
+        userName : "Generic",
+        categories : categoryList
+      }
+      const requestOptions1 = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(categoryData)
+      };
+      fetch(`${expensebe}categories`, requestOptions1)
+        .then(response => response.json())
+        .then(data => console.log(data));
+      }
+      else{                                        // if new custom category added, and user is logged in
+        customCategoryForUser.push(category);
+        const currentCategoryForUser = [...customCategoryForUser];
+            
+        setCustomCategoryForUser(currentCategoryForUser);
+        const categoryDataForUser = {
+          userName : props.onEmail,
+          categories : currentCategoryForUser
+        }
+        const requestOptions2 = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(categoryDataForUser)
+        };
+        fetch(`${expensebe}categories`, requestOptions2)
+          .then(response => response.json())
+          .then(data => console.log(data));
+      }
     }
-    const categoryData = {
-      userName : "Generic",
-      categories : categoryList
-    }
-    const requestOptions1 = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(categoryData)
-    };
-    fetch(`${expensebe}categories`, requestOptions1)
-      .then(response => response.json())
-      .then(data => console.log(data));
   }
 
   function amountChangeHandler(event){
     const amountTyped = event.target.value;
-    if(props.category === props.onCategory){
-      editedInputForCategory.amount = amountTyped;
-    }
-    else if(props.onCategory === "All" && props.onMonthSelected){
+    if((props.category === props.onCategorySelected) || (props.onCategorySelected === "All" && props.onMonthSelected)){
       editedInputForCategory.amount = amountTyped;
     }
     else{
@@ -94,10 +104,7 @@ function ExpenseItem(props) {
 
   function titleChangeHandler(event){
     const titleTyped = event.target.value;
-    if(props.category == props.onCategory){
-      editedInputForCategory.title = titleTyped;
-    }
-    else if(props.onCategory === "All" && props.onMonthSelected){
+    if((props.category == props.onCategorySelected) || (props.onCategorySelected === "All" && props.onMonthSelected)){
       editedInputForCategory.title = titleTyped;
     }
     else{
@@ -107,10 +114,7 @@ function ExpenseItem(props) {
 
   function dateChangeHandler(event){
     const datePicked = event.target.value;
-    if(props.category == props.onCategory){
-      editedInputForCategory.date = datePicked;
-    }
-    else if(props.onCategory === "All" && props.onMonthSelected){
+    if((props.category == props.onCategorySelected) || (props.onCategorySelected === "All" && props.onMonthSelected)){
       editedInputForCategory.date = datePicked;
     }
     else{
@@ -120,10 +124,7 @@ function ExpenseItem(props) {
 
   function categoryChangeHandler(event){
     const categoryTyped = event.target.value;
-    if(props.category == props.onCategory){
-      editedInputForCategory.category = categoryTyped;
-    }
-    else if(props.onCategory === "All" && props.onMonthSelected){
+    if((props.category == props.onCategorySelected) || (props.onCategorySelected === "All" && props.onMonthSelected)){
       editedInputForCategory.category = categoryTyped;
     }
     else{
@@ -136,10 +137,7 @@ function ExpenseItem(props) {
 
   function inputCategoryHandler(event){
     const categoryTyped = event.target.value;
-     if(props.category == props.onCategory){
-      editedInputForCategory.category = categoryTyped;
-    }
-    else if(props.onCategory === "All" && props.onMonthSelected){
+     if((props.category == props.onCategorySelected) || (props.onCategorySelected === "All" && props.onMonthSelected)){
       editedInputForCategory.category = categoryTyped;
     }
     else{

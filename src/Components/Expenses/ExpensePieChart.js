@@ -3,7 +3,7 @@ import { Pie, Doughnut } from 'react-chartjs-2';
 export const ExpensePieChart = (props) => {
 
     if(props.pieChartData.datasets[0].data.every(item => item === 0)){
-        return <p className = "expenses-list__fallback chart-fallback"> There is no data to show for this category.</p>
+        return <p className = "expenses-list__fallback chart-fallback"> There is no data to show.</p>
     }
 
     return (

@@ -96,14 +96,12 @@ function submitHandler(event){
 function categoryHandler(event){
     setSelectedCategory(event.target.value);
     setButtonClicked(false);
-    setButtonPresent(false);
-    console.log("Custom Category in EF", customCategory);    
+    setButtonPresent(false); 
 }
 
 function customCategoryHandler(event){
     const customCategoryItemAdded = event.target.value;
-    setNewCategory(customCategoryItemAdded); 
-    console.log(newCategory);     
+    setNewCategory(customCategoryItemAdded);     
 }
 
 

@@ -15,7 +15,6 @@ const ExpensesFilter = (props) => {
 
   function dropDownCategoryChangeHandler(event){
     const categoryPicked = event.target.value;
-    console.log(categoryPicked);
     props.onCategorySelected(categoryPicked);
   }
 

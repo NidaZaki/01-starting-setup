@@ -22,7 +22,7 @@ let categorySelectedByUser = '';
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const App  = () => {
-
+const google = window.google;
 const [refresh, setRefresh] = useState(false);
 const [user, setUser] = useState({});
 const [data, setData] = useState(expenses);
@@ -61,7 +61,7 @@ useEffect(() => {         // google sign in USE EFFECT
     {theme: "outline", size: "large"}
   );
   
-  google.accounts.id.prompt();
+ //google.accounts.id.prompt();
 }, [refresh]);
 
 useEffect(() => {             // get CATEGORIES LIST (DROPDOWN)
@@ -224,14 +224,8 @@ const addExpenseHandler = expense => {
     fetch(`${expensebe}expenses`, requestOptions)
         .then(response => response.json())
         .then(data => {
-            // const spilltedDate = data["date"].split('T')[0].split('-');
-            // const date = new Date(spilltedDate[0], spilltedDate[1] - 1, spilltedDate[2], 0, 0, 0);    
-            // data["date"] = date;
             setRawData([data, ...rawData]);
             const combinedData = [data, ...rawData]
-            // combinedData.sort(function(a,b){
-            //   return new Date(b.date) - new Date(a.date)
-            // })
           setRefresh(!refresh);
           if(!filteredCategory || filteredCategory === "All"){  
             setRefreshPieChart(!refreshPieChart); 

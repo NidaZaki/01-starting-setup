@@ -12,7 +12,6 @@ const NewExpense = (props) => {
    const stopEditHandler = () => {
     setIsEditing(false);
    }
-   
 
     function saveExpenseDataHandler(enteredExpenseData){
         const expenseData = {
@@ -20,7 +19,7 @@ const NewExpense = (props) => {
             userName: props.text
         };
         props.onAddExpense(expenseData);
-
+        
     }
 
     return (
